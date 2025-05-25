@@ -1,0 +1,18 @@
+image:
+  repository: 653082655171.dkr.ecr.eu-north-1.amazonaws.com/aws-lab
+  pullPolicy: IfNotPresent
+  tag: latest
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  hosts:
+    - host: ""
+      paths:
+        - path: /
+          pathType: Prefix
