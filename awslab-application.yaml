@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/YourUser/AWSLab.git   
-    targetRevision: main
+    repoURL: https://github.com/shimon23/AWSLab.git   
+    targetRevision: master
     path: AWSLab-chart
   destination:
     server: https://kubernetes.default.svc
