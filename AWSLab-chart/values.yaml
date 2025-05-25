@@ -3,7 +3,7 @@ replicaCount: 2
 image:
   repository: 653082655171.dkr.ecr.eu-north-1.amazonaws.com/aws-lab
   pullPolicy: IfNotPresent
-  tag: latest
+  tag: "$TAG"
 
 service:
   type: ClusterIP
