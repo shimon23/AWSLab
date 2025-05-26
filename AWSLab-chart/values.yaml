@@ -10,6 +10,12 @@ service:
   type: ClusterIP
   port: 80
 
+db:
+  host: "awslab-db.cv82aa4w6eha.eu-north-1.rds.amazonaws.com"
+  port: 3306
+  name: awslabdb
+  secretName: awslab-db-credentials
+
 ingress:
   enabled: true
   annotations:
