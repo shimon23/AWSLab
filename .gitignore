@@ -1,0 +1,28 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+build/
+
+# dotenv
+.env
+
+# Docker builds
+*.tar
+
+# Helm chart temp files
+*.tgz
+
+# CodePipeline local config
+pipeline.json
+
+# IDE/editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
