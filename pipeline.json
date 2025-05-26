@@ -1,0 +1,61 @@
+{
+  "pipeline": {
+    "name": "AWSLab-Pipeline",
+    "roleArn": "arn:aws:iam::653082655171:role/AWSLab-CodePipeline-ServiceRole",
+    "artifactStore": {
+      "type": "S3",
+      "location": "awslab-codepipeline-artifacts"
+    },
+    "stages": [
+      {
+        "name": "Source",
+        "actions": [
+          {
+            "name": "GitHub_Source",
+            "actionTypeId": {
+              "category": "Source",
+              "owner": "ThirdParty",
+              "provider": "GitHub",
+              "version": "1"
+            },
+            "configuration": {
+              "Owner": "shimon23",
+              "Repo": "AWSLab",
+              "Branch": "master",
+              "OAuthToken": "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"
+            },
+            "outputArtifacts": [
+              { "name": "SourceOutput" }
+            ],
+            "runOrder": 1
+          }
+        ]
+      },
+      {
+        "name": "Build",
+        "actions": [
+          {
+            "name": "BuildAction",
+            "actionTypeId": {
+              "category": "Build",
+              "owner": "AWS",
+              "provider": "CodeBuild",
+              "version": "1"
+            },
+            "configuration": {
+              "ProjectName": "AWSLab-Build"
+            },
+            "inputArtifacts": [
+              { "name": "SourceOutput" }
+            ],
+            "outputArtifacts": [
+              { "name": "BuildOutput" }
+            ],
+            "runOrder": 1
+          }
+        ]
+      }
+    ],
+    "version": 1
+  }
+}

@@ -1,0 +1,35 @@
+version: 0.2
+
+env:
+  variables:
+    ECR_REPO: "653082655171.dkr.ecr.eu-north-1.amazonaws.com/aws-lab"
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR…
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION \
+        | docker login --username AWS --password-stdin $ECR_REPO
+      - TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c1-7)
+      - echo Build tag is $TAG
+  build:
+    commands:
+      - echo Building Docker image…
+      - docker build -t aws-lab:$TAG .
+      - docker tag aws-lab:$TAG $ECR_REPO:$TAG
+  post_build:
+    commands:
+      - echo Pushing Docker image…
+      - docker push $ECR_REPO:$TAG
+      - echo Updating Helm chart…
+      - yq eval ".image.tag = \"$TAG\"" -i AWSLab-chart/values.yaml
+      - git config --global user.name "ci-bot"
+      - git config --global user.email "ci-bot@example.com"
+      - cd AWSLab-chart
+      - git add values.yaml
+      - git commit -m "ci: bump image to $TAG"
+      - git push https://$GH_TOKEN@github.com/shimon23/AWSLab.git HEAD:master
+
+artifacts:
+  files:
+    - AWSLab-chart/**/*
