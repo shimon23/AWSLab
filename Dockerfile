@@ -1,4 +1,13 @@
-FROM nginx:alpine
-COPY index.html /usr/share/nginx/html/index.html
-COPY logo.png    /usr/share/nginx/html/logo.png
-EXPOSE 80
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package.json package-lock.json* ./
+RUN npm install --production
+
+COPY app.js ./
+COPY public ./public
+
+EXPOSE 3000
+
+CMD ["node", "app.js"]

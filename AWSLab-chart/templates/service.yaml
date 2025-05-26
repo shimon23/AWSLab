@@ -13,3 +13,7 @@ spec:
       name: http
   selector:
     {{- include "awslab.selectorLabels" . | nindent 4 }}
+ports:
+  - port: {{ .Values.service.port }}
+    targetPort: {{ .Values.service.port }}
+    name: http
