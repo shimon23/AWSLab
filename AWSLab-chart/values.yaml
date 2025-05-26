@@ -8,7 +8,7 @@ image:
 
 service:
   type: ClusterIP
-  port: 80
+  port: 3000
 
 db:
   host: "awslab-db.cv82aa4w6eha.eu-north-1.rds.amazonaws.com"
