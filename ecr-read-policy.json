@@ -1,0 +1,14 @@
+﻿{
+  "Version":"2012-10-17",
+  "Statement":[
+    {
+      "Effect":"Allow",
+      "Action":[
+        "ecr:DescribeImages",
+        "ecr:ListImages",
+        "ecr:BatchGetImage"
+      ],
+      "Resource":"arn:aws:ecr:eu-north-1:653082655171:repository/aws-lab"
+    }
+  ]
+}

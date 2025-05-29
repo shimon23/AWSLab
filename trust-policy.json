@@ -1,0 +1,17 @@
+﻿{
+  "Version":"2012-10-17",
+  "Statement":[
+    {
+      "Effect":"Allow",
+      "Principal":{
+        "Federated":"arn:aws:iam::653082655171:oidc-provider/oidc.eks.eu-north-1.amazonaws.com/id/AF26E3E542A4FC1ABDC66407CC67668D"
+      },
+      "Action":"sts:AssumeRole",
+      "Condition":{
+        "StringEquals":{
+          "oidc.eks.eu-north-1.amazonaws.com/id/":"system:serviceaccount:argocd:argocd-image-updater-sa"
+        }
+      }
+    }
+  ]
+}
