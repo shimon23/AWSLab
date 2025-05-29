@@ -3,6 +3,10 @@ kind: Application
 metadata:
   name: awslab-app
   namespace: argocd
+  annotations:
+  argocd-image-updater.argoproj.io/image-list: | 
+    aws-lab=653082655171.dkr.ecr.eu-north-1.amazonaws.com/aws-lab
+ 
 spec:
   project: default
   source:
